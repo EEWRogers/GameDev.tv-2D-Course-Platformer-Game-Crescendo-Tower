@@ -44,6 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 875271321
     locked: 0
+  - name: Player
+    uniqueID: 2671806815
+    locked: 0
   - name: Water
     uniqueID: 1024037437
     locked: 0
