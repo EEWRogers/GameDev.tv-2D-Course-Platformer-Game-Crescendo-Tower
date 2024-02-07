@@ -7,8 +7,17 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "b476dda5-fdc0-44d7-a77d-e7fcf64b1381",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "26c8052c-bff7-4af6-b874-36fd0c0b24e0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -19,7 +28,7 @@
                 {
                     "name": "WASD",
                     "id": "b3d1ba48-da53-456e-928c-01b34257dd0c",
-                    "path": "1DAxis",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -28,9 +37,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "positive",
-                    "id": "505abf3c-c6cf-48b4-a826-d0b77d0dd255",
-                    "path": "<Keyboard>/d",
+                    "name": "Left",
+                    "id": "289a1903-6961-4d6e-bc7e-fbb72d31e981",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -39,9 +48,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "negative",
-                    "id": "752b340f-7359-429b-9edb-2514adab1521",
-                    "path": "<Keyboard>/a",
+                    "name": "Right",
+                    "id": "75be4e4a-7b26-4373-9554-2d706486612f",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -52,7 +61,7 @@
                 {
                     "name": "Arrow Keys",
                     "id": "ed968ac6-0f33-4c2a-9fef-3543d649eb87",
-                    "path": "1DAxis",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -61,8 +70,19 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "positive",
-                    "id": "254d0454-1fd6-4d12-bd6b-840fc4e23319",
+                    "name": "Left",
+                    "id": "667fcb17-bc00-4e7a-b6cb-ab6e81aa3aa3",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Right",
+                    "id": "399ca3f8-2751-4381-92ff-82d4d05a596d",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
@@ -72,15 +92,15 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "negative",
-                    "id": "aabe7305-c5d9-4c6e-bdcf-63ae04de7c88",
-                    "path": "<Keyboard>/leftArrow",
+                    "name": "",
+                    "id": "2d48245e-f9c7-45cc-8341-7ccaef4ff66b",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Jump",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }
