@@ -10,9 +10,11 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float jumpStrength = 11f;
 
     Rigidbody2D playerRigidbody;
+    BoxCollider2D playerFeet;
     Animator playerAnimator;
     Vector2 movementVector;
     bool playerHasHorizontalVelocity;
+    bool isGrounded;
 
     PlayerInput playerInput;
     InputAction moveAction;
@@ -21,6 +23,7 @@ public class PlayerControls : MonoBehaviour
     void Awake() 
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
+        playerFeet = GetComponent<BoxCollider2D>();
         playerAnimator = GetComponent<Animator>();
 
         playerInput = GetComponent<PlayerInput>();
@@ -58,10 +61,21 @@ public class PlayerControls : MonoBehaviour
 
     void Jump()
     {
+        if (!isGrounded) { return; }
+        
         if (jumpAction.triggered)
         {
             playerRigidbody.velocity += new Vector2(playerRigidbody.velocity.x, jumpStrength);
+            isGrounded = false;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (playerFeet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            isGrounded = true;
+        }   
     }
 
 }
