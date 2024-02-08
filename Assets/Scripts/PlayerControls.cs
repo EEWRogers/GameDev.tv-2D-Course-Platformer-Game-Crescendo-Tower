@@ -8,10 +8,11 @@ public class PlayerControls : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 4.5f;
     [SerializeField] float jumpStrength = 11f;
-    [SerializeField] float timeBeforeJumpDisabled = 0.2f;
+    [SerializeField] float climbSpeed = 5f;
 
     Rigidbody2D playerRigidbody;
-    BoxCollider2D playerFeet;
+    BoxCollider2D playerFeetCollider;
+    CapsuleCollider2D playerCollider;
     Animator playerAnimator;
     Vector2 movementVector;
     bool playerHasHorizontalVelocity;
@@ -24,7 +25,8 @@ public class PlayerControls : MonoBehaviour
     void Awake() 
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
-        playerFeet = GetComponent<BoxCollider2D>();
+        playerFeetCollider = GetComponent<BoxCollider2D>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
         playerAnimator = GetComponent<Animator>();
 
         playerInput = GetComponent<PlayerInput>();
@@ -39,6 +41,7 @@ public class PlayerControls : MonoBehaviour
         Move();
         FlipPlayerSprite();
         Jump();
+        ClimbLadder();
     }
 
     void Move()
@@ -71,9 +74,18 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    void ClimbLadder()
+    {
+        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+            Vector2 verticalMovement = new Vector2(playerRigidbody.velocity.x, movementVector.y * climbSpeed);
+            playerRigidbody.velocity = verticalMovement;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if (playerFeet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) || playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             isGrounded = true;
         }   
