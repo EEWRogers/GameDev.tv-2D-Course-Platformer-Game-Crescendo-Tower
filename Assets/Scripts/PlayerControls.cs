@@ -76,16 +76,15 @@ public class PlayerControls : MonoBehaviour
 
     void ClimbLadder()
     {
-        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
-        {
-            Vector2 verticalMovement = new Vector2(playerRigidbody.velocity.x, movementVector.y * climbSpeed);
-            playerRigidbody.velocity = verticalMovement;
-        }
+        if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { return; }
+
+        Vector2 verticalMovement = new Vector2(playerRigidbody.velocity.x, movementVector.y * climbSpeed);
+        playerRigidbody.velocity = verticalMovement;
     }
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if (playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) || playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
         }   
