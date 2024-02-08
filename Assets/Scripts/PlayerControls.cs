@@ -8,6 +8,7 @@ public class PlayerControls : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 4.5f;
     [SerializeField] float jumpStrength = 11f;
+    [SerializeField] float timeBeforeJumpDisabled = 0.2f;
 
     Rigidbody2D playerRigidbody;
     BoxCollider2D playerFeet;
@@ -76,6 +77,11 @@ public class PlayerControls : MonoBehaviour
         {
             isGrounded = true;
         }   
+    }
+
+    void OnTriggerExit2D(Collider2D other) 
+    {
+        isGrounded = false;
     }
 
 }

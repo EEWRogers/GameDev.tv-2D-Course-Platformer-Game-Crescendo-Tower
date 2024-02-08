@@ -25249,6 +25249,10 @@ PrefabInstance:
       propertyPath: jumpStrength
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 9216560657132301688, guid: 2d9c4bbd80f1e9c43990390588ddf6c1, type: 3}
+      propertyPath: timeBeforeJumpDisabled
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
