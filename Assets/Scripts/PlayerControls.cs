@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 4.5f;
+    [SerializeField] float jumpHeight = 10f;
 
     Rigidbody2D playerRigidbody;
     Animator playerAnimator;
@@ -26,22 +27,13 @@ public class PlayerControls : MonoBehaviour
         jumpAction = playerInput.actions["Jump"];
     }
 
-    void OnEnable() 
-    {
-        jumpAction.performed += Jump;
-    }
-
-    void OnDisable() 
-    {
-        jumpAction.performed -= Jump;
-    }
-
     void Update() 
     {
         movementVector = moveAction.ReadValue<Vector2>();
 
         Move();
         FlipPlayerSprite();
+        Jump();
     }
 
     void Move()
@@ -63,9 +55,17 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    void Jump(InputAction.CallbackContext context)
+    void Jump()
     {
-        Debug.Log("You jumped!");
+        if (jumpAction.triggered)
+        {
+            playerRigidbody.velocity += new Vector2 (playerRigidbody.velocity.x, jumpHeight);
+            playerAnimator.SetBool("isJumping", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isJumping", false);
+        }
     }
 
 }
