@@ -25242,28 +25242,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5337690165606089530, guid: 2d9c4bbd80f1e9c43990390588ddf6c1, type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337690165606089530, guid: 2d9c4bbd80f1e9c43990390588ddf6c1, type: 3}
       propertyPath: m_GravityScale
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5337690165606089530, guid: 2d9c4bbd80f1e9c43990390588ddf6c1, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9216560657132301688, guid: 2d9c4bbd80f1e9c43990390588ddf6c1, type: 3}
-      propertyPath: jumpHeight
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216560657132301688, guid: 2d9c4bbd80f1e9c43990390588ddf6c1, type: 3}
-      propertyPath: movementSpeed
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216560657132301688, guid: 2d9c4bbd80f1e9c43990390588ddf6c1, type: 3}
-      propertyPath: jumpTimeLength
-      value: 0.1
+      propertyPath: jumpStrength
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

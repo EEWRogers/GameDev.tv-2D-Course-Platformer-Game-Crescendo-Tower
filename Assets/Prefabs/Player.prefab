@@ -122,10 +122,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -135,7 +135,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &7222670485548103495
 CapsuleCollider2D:
@@ -201,6 +201,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b476dda5-fdc0-44d7-a77d-e7fcf64b1381
     m_ActionName: Player/Move[/Keyboard/d,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 26c8052c-bff7-4af6-b874-36fd0c0b24e0
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -218,3 +222,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93683a60b3565d4ba23780fbdd6c36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 4.5
+  jumpStrength: 11

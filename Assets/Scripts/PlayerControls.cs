@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 4.5f;
-    [SerializeField] float jumpHeight = 10f;
+    [SerializeField] float jumpStrength = 11f;
 
     Rigidbody2D playerRigidbody;
     Animator playerAnimator;
@@ -59,7 +60,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (jumpAction.triggered)
         {
-            playerRigidbody.velocity += new Vector2 (playerRigidbody.velocity.x, jumpHeight);
+            playerRigidbody.velocity += new Vector2(playerRigidbody.velocity.x, jumpStrength);
         }
     }
 
