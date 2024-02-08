@@ -60,11 +60,6 @@ public class PlayerControls : MonoBehaviour
         if (jumpAction.triggered)
         {
             playerRigidbody.velocity += new Vector2 (playerRigidbody.velocity.x, jumpHeight);
-            playerAnimator.SetBool("isJumping", true);
-        }
-        else
-        {
-            playerAnimator.SetBool("isJumping", false);
         }
     }
 
