@@ -85,6 +85,7 @@ public class PlayerControls : MonoBehaviour
         {
             playerRigidbody.gravityScale = defaultGravity;
             playerAnimator.SetBool("isClimbing", false);
+            isClimbing = false;
 
             return; 
         }
@@ -93,7 +94,7 @@ public class PlayerControls : MonoBehaviour
         Vector2 verticalMovement = new Vector2(playerRigidbody.velocity.x, movementVector.y * climbSpeed);
         playerRigidbody.velocity = verticalMovement;
 
-        isClimbing = Mathf.Abs(verticalMovement.y) > Mathf.Epsilon && playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"));
+        isClimbing = Mathf.Abs(verticalMovement.y) > Mathf.Epsilon;
         playerAnimator.SetBool("isClimbing", isClimbing);
 
     }
