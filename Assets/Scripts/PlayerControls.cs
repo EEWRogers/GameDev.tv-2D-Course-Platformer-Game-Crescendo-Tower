@@ -10,13 +10,16 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float jumpStrength = 11f;
     [SerializeField] float climbSpeed = 5f;
 
+    float defaultGravity;
+
     Rigidbody2D playerRigidbody;
     BoxCollider2D playerFeetCollider;
     CapsuleCollider2D playerCollider;
     Animator playerAnimator;
     Vector2 movementVector;
     bool playerHasHorizontalVelocity;
-    public bool isGrounded;
+    bool isGrounded;
+    public bool isClimbing = false;
 
     PlayerInput playerInput;
     InputAction moveAction;
@@ -32,6 +35,8 @@ public class PlayerControls : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
+
+        defaultGravity = playerRigidbody.gravityScale;
     }
 
     void Update() 
@@ -42,6 +47,7 @@ public class PlayerControls : MonoBehaviour
         FlipPlayerSprite();
         Jump();
         ClimbLadder();
+        SetGravity();
     }
 
     void Move()
@@ -76,10 +82,28 @@ public class PlayerControls : MonoBehaviour
 
     void ClimbLadder()
     {
-        if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { return; }
+        if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) 
+        {
+            isClimbing = false;
 
+            return; 
+        }
+
+        isClimbing = true;
         Vector2 verticalMovement = new Vector2(playerRigidbody.velocity.x, movementVector.y * climbSpeed);
         playerRigidbody.velocity = verticalMovement;
+    }
+
+    void SetGravity()
+    {
+        if (isClimbing)
+        {
+            playerRigidbody.gravityScale = 0;
+        }
+        else
+        {
+            playerRigidbody.gravityScale = defaultGravity;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -95,7 +119,7 @@ public class PlayerControls : MonoBehaviour
         if (other.gameObject.layer == LayerMask.GetMask("Ground"))
         {
             isGrounded = false;
-        }   
+        }
     }
 
 }
