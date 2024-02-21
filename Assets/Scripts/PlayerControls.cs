@@ -70,7 +70,7 @@ public class PlayerControls : MonoBehaviour
 
     void Jump()
     {
-        if (!isGrounded || isClimbing) { return; }
+        if (!isGrounded || playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { return; }
         
         if (jumpAction.triggered)
         {
