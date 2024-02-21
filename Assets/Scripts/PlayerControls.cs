@@ -18,7 +18,7 @@ public class PlayerControls : MonoBehaviour
     Animator playerAnimator;
     Vector2 movementVector;
     bool playerHasHorizontalVelocity;
-    bool isGrounded;
+    public bool isGrounded;
     public bool isClimbing = false;
 
     PlayerInput playerInput;
@@ -71,7 +71,7 @@ public class PlayerControls : MonoBehaviour
 
     void Jump()
     {
-        if (!isGrounded) { return; }
+        if (!isGrounded || isClimbing) { return; }
         
         if (jumpAction.triggered)
         {
