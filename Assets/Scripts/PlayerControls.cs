@@ -16,7 +16,7 @@ public class PlayerControls : MonoBehaviour
     Animator playerAnimator;
     Vector2 movementVector;
     bool playerHasHorizontalVelocity;
-    bool isGrounded;
+    public bool isGrounded;
 
     PlayerInput playerInput;
     InputAction moveAction;
@@ -92,7 +92,10 @@ public class PlayerControls : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other) 
     {
-        isGrounded = false;
+        if (other.gameObject.layer == LayerMask.GetMask("Ground"))
+        {
+            isGrounded = false;
+        }   
     }
 
 }
