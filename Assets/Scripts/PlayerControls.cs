@@ -47,7 +47,6 @@ public class PlayerControls : MonoBehaviour
         FlipPlayerSprite();
         Jump();
         ClimbLadder();
-        SetGravity();
     }
 
     void Move()
@@ -84,26 +83,19 @@ public class PlayerControls : MonoBehaviour
     {
         if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) 
         {
-            isClimbing = false;
+            playerRigidbody.gravityScale = defaultGravity;
+            playerAnimator.SetBool("isClimbing", false);
 
             return; 
         }
 
-        isClimbing = true;
+        playerRigidbody.gravityScale = 0f;
         Vector2 verticalMovement = new Vector2(playerRigidbody.velocity.x, movementVector.y * climbSpeed);
         playerRigidbody.velocity = verticalMovement;
-    }
 
-    void SetGravity()
-    {
-        if (isClimbing)
-        {
-            playerRigidbody.gravityScale = 0;
-        }
-        else
-        {
-            playerRigidbody.gravityScale = defaultGravity;
-        }
+        isClimbing = Mathf.Abs(verticalMovement.y) > Mathf.Epsilon && playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"));
+        playerAnimator.SetBool("isClimbing", isClimbing);
+
     }
 
     void OnTriggerEnter2D(Collider2D other) 
