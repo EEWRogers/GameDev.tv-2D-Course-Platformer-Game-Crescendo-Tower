@@ -112,13 +112,15 @@ public class PlayerControls : MonoBehaviour
 
     void Die()
     {
-        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazard", "Water")))
         {
             isAlive = false;
             playerAnimator.SetTrigger("Death");
 
             playerCollider.enabled = false;
             playerFeetCollider.enabled = false;
+
+            playerRigidbody.velocity = new Vector2(0,0);
 
             playerRigidbody.velocity += new Vector2(deathKnockback, deathHeight);
         }
