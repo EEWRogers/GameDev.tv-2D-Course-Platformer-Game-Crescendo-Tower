@@ -13,6 +13,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float deathKnockback = -8f;
     [SerializeField] float deathHeight = 10f;
 
+    [SerializeField] GameObject arrow;
+    [SerializeField] Transform arrowSpawnPoint;
+
     float defaultGravity;
 
     Rigidbody2D playerRigidbody;
@@ -28,6 +31,7 @@ public class PlayerControls : MonoBehaviour
     PlayerInput playerInput;
     InputAction moveAction;
     InputAction jumpAction;
+    InputAction fireAction;
 
     void Awake() 
     {
@@ -39,8 +43,19 @@ public class PlayerControls : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
+        fireAction = playerInput.actions["Fire"];
 
         defaultGravity = playerRigidbody.gravityScale;
+    }
+
+    void OnEnable() 
+    {
+        fireAction.performed += Fire;
+    }
+
+    void OnDisable() 
+    {
+        fireAction.performed -= Fire;
     }
 
     void Update() 
@@ -114,6 +129,18 @@ public class PlayerControls : MonoBehaviour
         isClimbing = Mathf.Abs(verticalMovement.y) > Mathf.Epsilon;
         playerAnimator.SetBool("isClimbing", isClimbing);
 
+    }
+
+    void Fire(InputAction.CallbackContext context)
+    {
+        if (!isAlive) { return; }
+
+        playerAnimator.SetTrigger("Fire");
+    }
+
+    void ShootArrow()
+    {
+        Instantiate(arrow, arrowSpawnPoint);
     }
 
     void Die()

@@ -35,7 +35,8 @@ Transform:
   m_LocalPosition: {x: -8.43, y: -0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7828840530827007275}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5386895175569728530
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1623160481
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 457698041, guid: d93f16796e6957647816e420e08a8298, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -206,6 +207,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 26c8052c-bff7-4af6-b874-36fd0c0b24e0
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b3d2448e-855c-49e3-95bf-dfd079f96f55
+    m_ActionName: Player/Fire[/Keyboard/ctrl,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -226,8 +231,10 @@ MonoBehaviour:
   movementSpeed: 4.5
   jumpStrength: 14
   climbSpeed: 5
-  isGrounded: 0
-  isClimbing: 0
+  deathKnockback: -8
+  deathHeight: 10
+  arrow: {fileID: 7519822299766970999, guid: 8e76f6a26c31c484787be14baacd0d0f, type: 3}
+  arrowSpawnPoint: {fileID: 7828840530827007275}
 --- !u!61 &3853356929368126511
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -273,3 +280,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.38, y: 0.06}
   m_EdgeRadius: 0
+--- !u!1 &5912424991255787880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7828840530827007275}
+  m_Layer: 0
+  m_Name: ArrowSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7828840530827007275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5912424991255787880}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.375, y: -0.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5130359239843300347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
