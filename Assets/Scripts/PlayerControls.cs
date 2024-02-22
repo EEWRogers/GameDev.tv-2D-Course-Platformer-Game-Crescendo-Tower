@@ -10,6 +10,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float jumpStrength = 11f;
     [SerializeField] float climbSpeed = 5f;
 
+    [SerializeField] float deathKnockback = -8f;
+    [SerializeField] float deathHeight = 10f;
+
     float defaultGravity;
 
     Rigidbody2D playerRigidbody;
@@ -112,6 +115,12 @@ public class PlayerControls : MonoBehaviour
         if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
         {
             isAlive = false;
+            playerAnimator.SetTrigger("Death");
+
+            playerCollider.enabled = false;
+            playerFeetCollider.enabled = false;
+
+            playerRigidbody.velocity += new Vector2(deathKnockback, deathHeight);
         }
     }
 
