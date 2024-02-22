@@ -52,6 +52,7 @@ public class PlayerControls : MonoBehaviour
         Move();
         FlipPlayerSprite();
         Jump();
+        JumpAnimation();
         ClimbLadder();
         Die();
     }
@@ -88,6 +89,11 @@ public class PlayerControls : MonoBehaviour
             playerRigidbody.velocity += new Vector2(playerRigidbody.velocity.x, jumpStrength);
             isGrounded = false;
         }
+    }
+
+    void JumpAnimation()
+    {
+        playerAnimator.SetBool("isJumping", !isGrounded);
     }
 
     void ClimbLadder()
