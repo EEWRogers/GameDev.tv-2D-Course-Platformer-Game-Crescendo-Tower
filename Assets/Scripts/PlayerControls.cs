@@ -18,8 +18,9 @@ public class PlayerControls : MonoBehaviour
     Animator playerAnimator;
     Vector2 movementVector;
     bool playerHasHorizontalVelocity;
-    public bool isGrounded;
-    public bool isClimbing = false;
+    bool isGrounded;
+    bool isClimbing = false;
+    bool isAlive = true;
 
     PlayerInput playerInput;
     InputAction moveAction;
@@ -43,14 +44,19 @@ public class PlayerControls : MonoBehaviour
     {
         movementVector = moveAction.ReadValue<Vector2>();
 
+        if (!isAlive) { return; }
+
         Move();
         FlipPlayerSprite();
         Jump();
         ClimbLadder();
+        Die();
     }
 
     void Move()
     {
+        if (!isAlive) { return; }
+
         Vector2 horizontalMovement = new Vector2(movementVector.x * movementSpeed, playerRigidbody.velocity.y);
         playerRigidbody.velocity = horizontalMovement;
 
@@ -70,6 +76,8 @@ public class PlayerControls : MonoBehaviour
 
     void Jump()
     {
+        if (!isAlive) { return; }
+
         if (!isGrounded || playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { return; }
         
         if (jumpAction.triggered)
@@ -97,6 +105,14 @@ public class PlayerControls : MonoBehaviour
         isClimbing = Mathf.Abs(verticalMovement.y) > Mathf.Epsilon;
         playerAnimator.SetBool("isClimbing", isClimbing);
 
+    }
+
+    void Die()
+    {
+        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAlive = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other) 
