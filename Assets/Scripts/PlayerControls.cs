@@ -27,6 +27,7 @@ public class PlayerControls : MonoBehaviour
     bool isGrounded;
     bool isClimbing = false;
     bool isAlive = true;
+    bool isFiring = false;
 
     PlayerInput playerInput;
     InputAction moveAction;
@@ -135,12 +136,18 @@ public class PlayerControls : MonoBehaviour
     {
         if (!isAlive) { return; }
 
+        if (isFiring) { return; }
+
+        isFiring = true;
+
         playerAnimator.SetTrigger("Fire");
+
+        isFiring = false;
     }
 
-    void ShootArrow()
+    void CreateArrow()
     {
-        Instantiate(arrow, arrowSpawnPoint);
+        Instantiate(arrow, arrowSpawnPoint.position, transform.rotation);
     }
 
     void Die()
