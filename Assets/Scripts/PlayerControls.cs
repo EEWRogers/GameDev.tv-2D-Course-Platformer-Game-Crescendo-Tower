@@ -80,13 +80,13 @@ public class PlayerControls : MonoBehaviour
         Vector2 horizontalMovement = new Vector2(movementVector.x * movementSpeed, playerRigidbody.velocity.y);
         playerRigidbody.velocity = horizontalMovement;
 
-        playerHasHorizontalVelocity = Mathf.Abs(playerRigidbody.velocity.x) > Mathf.Epsilon;
+        playerHasHorizontalVelocity = Mathf.Abs(playerRigidbody.velocity.x) > 0;
         playerAnimator.SetBool("isRunning", playerHasHorizontalVelocity);
     }
 
     void FlipPlayerSprite()
     {
-        playerHasHorizontalVelocity = Mathf.Abs(playerRigidbody.velocity.x) > Mathf.Epsilon;
+        playerHasHorizontalVelocity = Mathf.Abs(playerRigidbody.velocity.x) > 0;
 
         if (playerHasHorizontalVelocity)
         {
