@@ -138,10 +138,16 @@ public class PlayerControls : MonoBehaviour
 
         if (isFiring) { return; }
 
-        isFiring = true;
-
         playerAnimator.SetTrigger("Fire");
+    }
 
+    void DisableFiring()
+    {
+        isFiring = true;
+    }
+
+    void EnableFiring()
+    {
         isFiring = false;
     }
 
