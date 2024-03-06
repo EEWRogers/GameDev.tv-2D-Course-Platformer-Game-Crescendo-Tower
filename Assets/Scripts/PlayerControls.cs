@@ -163,7 +163,6 @@ public class PlayerControls : MonoBehaviour
 
     public void Freeze()
     {
-        playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.gravityScale = 0;
         canMove = false;
         

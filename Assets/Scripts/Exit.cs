@@ -13,8 +13,7 @@ public class Exit : MonoBehaviour
     void Awake() 
     {
         playerControls = FindObjectOfType<PlayerControls>();
-        currentActiveScene = SceneManager.GetActiveScene().buildIndex;
-        nextScene = currentActiveScene++;
+        nextScene = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -28,7 +27,16 @@ public class Exit : MonoBehaviour
 
         yield return new WaitForSeconds(loadDelay);
 
-        SceneManager.LoadScene(nextScene);
+        if (nextScene < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+        
     }
 
 }
