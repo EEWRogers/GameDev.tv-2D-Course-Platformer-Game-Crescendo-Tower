@@ -12,6 +12,7 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] float deathKnockback = -8f;
     [SerializeField] float deathHeight = 10f;
+    [SerializeField] float timeBeforeReload = 2f;
 
     [SerializeField] GameObject arrow;
     [SerializeField] Transform arrowSpawnPoint;
@@ -22,6 +23,7 @@ public class PlayerControls : MonoBehaviour
     BoxCollider2D playerFeetCollider;
     CapsuleCollider2D playerCollider;
     Animator playerAnimator;
+    GameSession gameSession;
     Vector2 movementVector;
     bool playerHasHorizontalVelocity;
     bool isGrounded;
@@ -41,6 +43,7 @@ public class PlayerControls : MonoBehaviour
         playerFeetCollider = GetComponent<BoxCollider2D>();
         playerCollider = GetComponent<CapsuleCollider2D>();
         playerAnimator = GetComponent<Animator>();
+        gameSession = FindObjectOfType<GameSession>();
 
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
@@ -181,7 +184,16 @@ public class PlayerControls : MonoBehaviour
             playerRigidbody.velocity = new Vector2(0,0);
 
             playerRigidbody.velocity += new Vector2(deathKnockback, deathHeight);
+
+            StartCoroutine(ProcessDeath());
         }
+    }
+
+    IEnumerator ProcessDeath()
+    {
+        yield return new WaitForSeconds(timeBeforeReload);
+
+        gameSession.ProcessPlayerDeath();
     }
 
     void OnTriggerEnter2D(Collider2D other) 
