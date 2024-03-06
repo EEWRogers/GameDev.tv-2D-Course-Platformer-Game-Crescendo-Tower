@@ -19,7 +19,7 @@ TagManager:
   - Enemy
   - Hazard
   - Arrow
-  - 
+  - Exit
   - 
   - 
   - 
@@ -56,6 +56,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 4214589537
+    locked: 0
+  - name: Exit
+    uniqueID: 4124991327
     locked: 0
   - name: Player
     uniqueID: 2671806815
