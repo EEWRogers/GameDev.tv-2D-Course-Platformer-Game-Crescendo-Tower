@@ -28,6 +28,7 @@ public class PlayerControls : MonoBehaviour
     bool isClimbing = false;
     bool isAlive = true;
     bool isFiring = false;
+    bool canMove = true;
 
     PlayerInput playerInput;
     InputAction moveAction;
@@ -47,6 +48,8 @@ public class PlayerControls : MonoBehaviour
         fireAction = playerInput.actions["Fire"];
 
         defaultGravity = playerRigidbody.gravityScale;
+
+        canMove = true;
     }
 
     void OnEnable() 
@@ -64,6 +67,8 @@ public class PlayerControls : MonoBehaviour
         movementVector = moveAction.ReadValue<Vector2>();
 
         if (!isAlive) { return; }
+
+        if (!canMove) { return; }
 
         Move();
         FlipPlayerSprite();
@@ -154,6 +159,14 @@ public class PlayerControls : MonoBehaviour
     void CreateArrow()
     {
         Instantiate(arrow, arrowSpawnPoint.position, transform.rotation);
+    }
+
+    public void Freeze()
+    {
+        playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.gravityScale = 0;
+        canMove = false;
+        
     }
 
     void Die()
