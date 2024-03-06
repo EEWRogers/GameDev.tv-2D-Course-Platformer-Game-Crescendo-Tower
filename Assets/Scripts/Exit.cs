@@ -18,7 +18,10 @@ public class Exit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        StartCoroutine(LoadNextLevel());
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            StartCoroutine(LoadNextLevel());
+        }
     }
 
     IEnumerator LoadNextLevel()
