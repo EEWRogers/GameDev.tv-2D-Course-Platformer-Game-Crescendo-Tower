@@ -43,8 +43,7 @@ public class PlayerControls : MonoBehaviour
         playerFeetCollider = GetComponent<BoxCollider2D>();
         playerCollider = GetComponent<CapsuleCollider2D>();
         playerAnimator = GetComponent<Animator>();
-        gameSession = FindObjectOfType<GameSession>();
-
+        
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
@@ -53,6 +52,11 @@ public class PlayerControls : MonoBehaviour
         defaultGravity = playerRigidbody.gravityScale;
 
         canMove = true;
+    }
+
+    void Start() 
+    {
+        gameSession = FindObjectOfType<GameSession>();
     }
 
     void OnEnable() 
