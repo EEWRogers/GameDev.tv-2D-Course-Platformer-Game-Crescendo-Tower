@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f82b35f0567a1a40b6f5f3a319e3c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickupAudio: {fileID: 8300000, guid: 619897fc92fc05f4590f670369151e57, type: 3}
 --- !u!95 &3907784846330656647
 Animator:
   serializedVersion: 5
