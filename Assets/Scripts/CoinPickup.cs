@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class CoinPickup : MonoBehaviour
 {
+    [SerializeField] AudioClip coinPickupAudio;
+
     void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            AudioSource.PlayClipAtPoint(coinPickupAudio, transform.position);
             Destroy(gameObject);
         }
     }
