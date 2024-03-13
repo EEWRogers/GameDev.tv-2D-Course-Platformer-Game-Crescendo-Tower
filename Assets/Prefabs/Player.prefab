@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1623160481
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 457698041, guid: d93f16796e6957647816e420e08a8298, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -233,6 +233,7 @@ MonoBehaviour:
   climbSpeed: 5
   deathKnockback: -8
   deathHeight: 10
+  timeBeforeReload: 1.5
   arrow: {fileID: 7519822299766970999, guid: 8e76f6a26c31c484787be14baacd0d0f, type: 3}
   arrowSpawnPoint: {fileID: 7828840530827007275}
 --- !u!61 &3853356929368126511

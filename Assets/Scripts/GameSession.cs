@@ -13,6 +13,7 @@ public class GameSession : MonoBehaviour
 
         if (numberOfGameSessions > 1)
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
         }
 
