@@ -20,7 +20,7 @@ TagManager:
   - Hazard
   - Arrow
   - Exit
-  - 
+  - Pickup
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: ClimbingObjects
     uniqueID: 2050496669
+    locked: 0
+  - name: Pickup
+    uniqueID: 1460770637
     locked: 0
   - name: Enemy
     uniqueID: 4214589537
