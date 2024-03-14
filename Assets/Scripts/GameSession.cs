@@ -51,6 +51,12 @@ public class GameSession : MonoBehaviour
         livesText.text = "Lives: " + playerLives.ToString();
     }
 
+    public void IncreaseScore(int scoreValue)
+    {
+        playerScore += scoreValue;
+        scoreText.text = "Score: " + playerScore.ToString(); 
+    }
+
     void ResetGameSession()
     {
         SceneManager.LoadScene(0);
