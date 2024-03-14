@@ -7,6 +7,7 @@ public class Exit : MonoBehaviour
 {
     [SerializeField] float loadDelay = 1f;
     PlayerControls playerControls;
+    ScenePersist scenePersist;
     int currentActiveScene;
     int nextScene;
 
@@ -14,6 +15,11 @@ public class Exit : MonoBehaviour
     {
         playerControls = FindObjectOfType<PlayerControls>();
         nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+    }
+
+    void Start() 
+    {
+        scenePersist = FindObjectOfType<ScenePersist>();
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -32,11 +38,13 @@ public class Exit : MonoBehaviour
 
         if (nextScene < SceneManager.sceneCountInBuildSettings)
         {
+            scenePersist.ResetScenePersist();
             SceneManager.LoadScene(nextScene);
         }
 
         else
         {
+            scenePersist.ResetScenePersist();
             SceneManager.LoadScene(0);
         }
         

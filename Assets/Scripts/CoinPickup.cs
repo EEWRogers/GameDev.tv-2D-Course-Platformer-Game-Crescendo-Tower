@@ -8,7 +8,7 @@ public class CoinPickup : MonoBehaviour
     [SerializeField] int scoreValue = 100;
     GameSession gameSession;
 
-    void Awake() 
+    void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
     }
@@ -18,7 +18,9 @@ public class CoinPickup : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player") && other is CapsuleCollider2D)
         {
             AudioSource.PlayClipAtPoint(coinPickupAudio, Camera.main.transform.position);
+
             gameSession.IncreaseScore(scoreValue);
+
             Destroy(gameObject);
         }
     }
